@@ -10,8 +10,19 @@ const displayPhones = phones => {
     //1. get container name
     const phoneContainer = document.getElementById('phone-container');
     phoneContainer.innerHTML = '';
+    
+    const showAllContainer = document.getElementById('show-all-container');
+    if(phones.length > 10){
+        showAllContainer.classList.remove('hidden');
+    } else{
+        showAllContainer.classList.add('hidden');
+    }
+
+    phones = phones.slice(0, 10);
     phones.forEach(phone => {
-        console.log(phone);
+        
+        // phone.slice(0, 10);
+        
         // 2.create a div 
         const phoneCard = document.createElement('div');
         phoneCard.classList = `card p-4 bg-gray-100 shadow-xl`;
@@ -35,7 +46,6 @@ const displayPhones = phones => {
 function handleSerach(){
     const searchFiled = document.getElementById('search-filed');
     const searchText = searchFiled.value;
-    alert(searchText);
     loadPhone(searchText);
 }
 //handle search button ended
