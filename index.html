@@ -12,11 +12,20 @@
     <header>
         <h2 class="text-6xl">Hunting Phone</h2>
     </header>
-    <main>
+    <main class="container mx-auto mt-8">
+        <!-- search section start -->
+        <section class="mb-4">
+            <input id="search-filed" type="text" placeholder="Search..." class="input input-bordered w-full max-w-xs" />
+            <button onclick="handleSerach()" class="btn btn-accent">Serach</button>
+        </section>
+        <!-- search section ended -->
+
+        <!-- card container start -->
         <section>
             <div id ="phone-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             </div>
         </section>
+        <!-- card container ended -->
     </main>
     <footer></footer>
     <script src="assets/js/main.js"></script>

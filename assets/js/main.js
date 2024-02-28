@@ -1,20 +1,20 @@
-const loadPhone = async () => {
-    const res = await fetch('https://openapi.programming-hero.com/api/phones?search=iphone');
+const loadPhone = async (searchText) => {
+    const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
     const data = await res.json();
     const phones = data.data;
     console.log(phones);
     displayPhones(phones);
 }
-loadPhone();
 
 const displayPhones = phones => {
     //1. get container name
     const phoneContainer = document.getElementById('phone-container');
+    phoneContainer.innerHTML = '';
     phones.forEach(phone => {
         console.log(phone);
         // 2.create a div 
         const phoneCard = document.createElement('div');
-        phoneCard.classList = `card w-96 bg-gray-100 shadow-xl`;
+        phoneCard.classList = `card p-4 bg-gray-100 shadow-xl`;
         // 3.set inner html
         phoneCard.innerHTML = `
             <figure><img src="${phone.image}" alt="Shoes" /></figure>
@@ -30,3 +30,14 @@ const displayPhones = phones => {
         phoneContainer.appendChild(phoneCard);
     });
 }
+
+//handle search button start
+function handleSerach(){
+    const searchFiled = document.getElementById('search-filed');
+    const searchText = searchFiled.value;
+    alert(searchText);
+    loadPhone(searchText);
+}
+//handle search button ended
+
+loadPhone();
