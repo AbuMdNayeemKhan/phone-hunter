@@ -18,7 +18,7 @@ const displayPhones = phones => {
         showAllContainer.classList.add('hidden');
     }
 
-    phones = phones.slice(0, 10);
+    phones = phones.slice(0, 9);
     phones.forEach(phone => {
         
         // phone.slice(0, 10);
@@ -40,14 +40,29 @@ const displayPhones = phones => {
         // 4. append child
         phoneContainer.appendChild(phoneCard);
     });
+
+    //hide loading spinner
+    toggleLoadingSpinner(false);
 }
 
 //handle search button start
 function handleSerach(){
+    toggleLoadingSpinner(true);
     const searchFiled = document.getElementById('search-filed');
     const searchText = searchFiled.value;
     loadPhone(searchText);
 }
 //handle search button ended
+
+//loding spinner start
+const toggleLoadingSpinner = (isLoading) => {
+    const loadingSpinner = document.getElementById('loading-spinner');
+    if(isLoading){
+        loadingSpinner.classList.remove('hidden');
+    } else {
+        loadingSpinner.classList.add('hidden');
+    }
+}
+//loding spinner ended
 
 loadPhone();
