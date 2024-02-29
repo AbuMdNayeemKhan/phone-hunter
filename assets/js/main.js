@@ -24,7 +24,7 @@ const displayPhones = (phones, isShowAll) => {
     }
     
     phones.forEach(phone => {
-        
+        console.log(phone);
         // 2.create a div 
         const phoneCard = document.createElement('div');
         phoneCard.classList = `card p-4 bg-gray-100 shadow-xl`;
@@ -35,7 +35,7 @@ const displayPhones = (phones, isShowAll) => {
             <h2 class="card-title">${phone.phone_name}</h2>
             <p>If a dog chews shoes whose shoes does he choose?</p>
             <div class="card-actions justify-end">
-                <button class="btn btn-primary">Buy Now</button>
+                <button onclick="handelShowDetails('${phone.slug}')" class="btn btn-primary">Show Details</button>
             </div>
             </div>
         `;
@@ -73,5 +73,15 @@ const showAllData = () => {
     handleSerach(true)
 }
 // show more handeler ended
+
+// handel show details start
+const handelShowDetails = async (id) =>{
+    alert('clicked on show details' + id);
+    //load single phone data
+    const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`);
+    const data = await res.json();
+    alert(data);
+}
+// handel show details ended
 
 loadPhone();
