@@ -2,7 +2,7 @@ const loadPhone = async (searchText, isShowAll) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
     const data = await res.json();
     const phones = data.data;
-    console.log(phones);
+    // console.log(phones);
     displayPhones(phones, isShowAll);
 }
 
@@ -24,7 +24,7 @@ const displayPhones = (phones, isShowAll) => {
     }
     
     phones.forEach(phone => {
-        console.log(phone);
+        // console.log(phone);
         // 2.create a div 
         const phoneCard = document.createElement('div');
         phoneCard.classList = `card p-4 bg-gray-100 shadow-xl`;
@@ -76,12 +76,28 @@ const showAllData = () => {
 
 // handel show details start
 const handelShowDetails = async (id) =>{
-    alert('clicked on show details' + id);
+    // alert('clicked on show details' + id);
     //load single phone data
     const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`);
     const data = await res.json();
-    alert(data);
+    const phone = data.data;
+    showPhoneDetails(phone);
 }
 // handel show details ended
+
+// show phone details
+const showPhoneDetails = (phone) => {
+    console.log(phone);
+    //show the modal
+    my_modal_5.showModal();
+    const phoneName = document.getElementById('show-detail-phone-name');
+    phoneName.innerText = phone.name;
+    const showDetailContainer = document.getElementById('show-detail-container');
+    showDetailContainer.innerHTML = `
+    <img src=${phone.image} alt="" />
+    <p>${phone.mainFeatures.memory}</p>
+    `
+}
+// show phone details
 
 loadPhone();
