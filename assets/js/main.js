@@ -18,7 +18,7 @@ const displayPhones = phones => {
         showAllContainer.classList.add('hidden');
     }
 
-    phones = phones.slice(0, 9);
+    phones = phones.slice(0, 9); 
     phones.forEach(phone => {
         
         // phone.slice(0, 10);
